@@ -11,12 +11,38 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'ejs');
 
+
+// example of middle ware.
+
+app.use(function(req,res,next){
+
+  // becaus the middleware function uses the res and req objects
+  //gives us the opportunity to create properties
+  //for example.
+  //adding a time property to the res.locals object
+  // the time property then becomes available to us.
+
+  res.locals.time = new Date().toLocaleTimeString();
+
+  next(); // pass request to the next middleware function
+
+
+
+});
+
+
+
 app.use(logger('dev'));
+
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: false }));
+
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -26,6 +52,10 @@ app.use('/skills', skillsRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
