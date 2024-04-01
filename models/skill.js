@@ -13,7 +13,8 @@ const skills = [
 	
   module.exports = {
     getAll,
-    getOne
+    getOne,
+    create
   };
 	
   function getAll() {
@@ -25,5 +26,16 @@ const skills = [
      id = parseInt(id);
 
      return skills.find(skill => skill.id === id);
+
+  }
+
+  function create(skill){
+
+    // add the id
+
+    skill.id = Date.now() % 1000000;
+    skill.proficiency = 'Intermediate'
+    skill.proficiency = `${skill.proficiency}`;
+    skills.push(skill);
 
   }
