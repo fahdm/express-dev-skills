@@ -14,7 +14,8 @@
 
   <h1>All Skills</h1>
 
-
+   <h3>as of <%= time %></h3>
+ 
   <ol>
     <% skills.forEach(function(s) { %>
       <li>
@@ -24,6 +25,9 @@
       </li>
       <% }); %>
     </ol>
+
+    
+  <a href="/skills/new">Add a skill</a>
 
   <footer>
     <%- include('../partials/footer'); %>
