@@ -14,7 +14,8 @@ const skills = [
   module.exports = {
     getAll,
     getOne,
-    create
+    create,
+    deleteOne
   };
 	
   function getAll() {
@@ -37,5 +38,16 @@ const skills = [
     skill.proficiency = 'Intermediate'
     skill.proficiency = `${skill.proficiency}`;
     skills.push(skill);
+
+  }
+
+  function deleteOne(id){
+
+    id = parseInt(id);
+
+    // find the index for the skills
+    const idx = skills.findIndex(skill => skill.id === id);
+    skills.splice(idx,1);
+
 
   }
